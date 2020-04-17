@@ -1,0 +1,131 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "gypsophila": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/gypsophila",
+      "sourceRoot": "projects/gypsophila/src",
+      "prefix": "gyp",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/gypsophila",
+            "index": "projects/gypsophila/src/index.html",
+            "main": "projects/gypsophila/src/main.ts",
+            "polyfills": "projects/gypsophila/src/polyfills.ts",
+            "tsConfig": "projects/gypsophila/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/gypsophila/src/favicon.ico",
+              "projects/gypsophila/src/assets"
+            ],
+            "styles": [
+              "projects/gypsophila/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/gypsophila/src/environments/environment.ts",
+                  "with": "projects/gypsophila/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "gypsophila:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "gypsophila:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "gypsophila:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/gypsophila/src/test.ts",
+            "polyfills": "projects/gypsophila/src/polyfills.ts",
+            "tsConfig": "projects/gypsophila/tsconfig.spec.json",
+            "karmaConfig": "projects/gypsophila/karma.conf.js",
+            "assets": [
+              "projects/gypsophila/src/favicon.ico",
+              "projects/gypsophila/src/assets"
+            ],
+            "styles": [
+              "projects/gypsophila/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/gypsophila/tsconfig.app.json",
+              "projects/gypsophila/tsconfig.spec.json",
+              "projects/gypsophila/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/gypsophila/e2e/protractor.conf.js",
+            "devServerTarget": "gypsophila:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "gypsophila:serve:production"
+            }
+          }
+        }
+      }
+    }},
+  "cli": {
+    "analytics": false
+  },
+  "defaultProject": "gypsophila"
+}
