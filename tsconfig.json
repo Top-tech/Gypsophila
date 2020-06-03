@@ -14,7 +14,17 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "in-mem-api": [
+        "dist/in-mem-api/in-mem-api",
+        "dist/in-mem-api"
+      ],
+      "gypsophils-ui": [
+        "dist/gypsophils-ui/gypsophils-ui",
+        "dist/gypsophils-ui"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
