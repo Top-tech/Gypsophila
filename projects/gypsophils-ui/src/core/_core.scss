@@ -1,0 +1,9 @@
+@import '~@angular/cdk/overlay';
+@import '~@angular/cdk/a11y';
+@import '~@angular/cdk/text-field';
+
+@mixin gyp-core() {
+    @include cdk-a11y();
+    @include cdk-overlay();
+    @include cdk-text-field();
+}
