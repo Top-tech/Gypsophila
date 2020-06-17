@@ -1,11 +1,25 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './auth/auth.guard';
+import { LoginComponent } from './login/login.component';
 
 
-const routes: Routes = [];
+const routes: Routes = [
+    {
+        path: '',
+        pathMatch: 'full',
+        component: LoginComponent
+    },
+    {
+        path: 'desktop',
+        loadChildren: () => import('./desktop/desktop.module').then(mod => mod.DesktopModule),
+        canActivate: [AuthGuard]
+    }
+];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
