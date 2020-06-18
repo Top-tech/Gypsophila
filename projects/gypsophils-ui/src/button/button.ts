@@ -11,14 +11,14 @@ import { FocusableOption, FocusMonitor, FocusOrigin } from '@angular/cdk/a11y';
 import { ANIMATION_MODULE_TYPE } from '@angular/platform-browser/animations';
 import { CanDisableCtor, mixinDisabled } from '../core/common-behaviors/disabled';
 import { BooleanInput } from '@angular/cdk/coercion';
-import { mixinColor } from '../core/common-behaviors/color';
+import { CanColorCtor, mixinColor } from '../core/common-behaviors/color';
 
 // Boilerplate for applying mixins to MatButton.
 /** @docs-private */
 class MatButtonBase {
     constructor(public _elementRef: ElementRef) {}
 }
-const _GypButtonMixinBase: CanDisableCtor &
+const _GypButtonMixinBase: CanDisableCtor & CanColorCtor &
     typeof MatButtonBase = mixinColor(mixinDisabled(MatButtonBase));
 
 
