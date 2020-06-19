@@ -1,0 +1,55 @@
+/// Gets the color configuration from the given theme or configuration.
+@function gyp-get-color-config($theme, $default: null) {
+    // If a configuration has been passed, return the config directly.
+    @if not _gyp-is-theme-object($theme) {
+        @return $theme;
+    }
+    // If the theme has been constructed through the legacy theming API, we use the theme object
+    // as color configuration instead of the dedicated `color` property. We do this because for
+    // backwards compatibility, we copied the color configuration from `$theme.color` to `$theme`.
+    // Hence developers could customize the colors at top-level and want to respect these changes
+    @if map_has_key($theme, color) {
+        @return map_get($theme, color);
+    }
+    @return $default;
+}
+
+/// Gets the density configuration from the given theme or configuration.
+@function gyp-get-density-config($theme-or-config, $default: 0) {
+    // If a configuration has been passed, return the config directly.
+    @if not _gyp-is-theme-object($theme-or-config) {
+        @return $theme-or-config;
+    }
+    // In case a theme has been passed, extract the configuration if present,
+    // or fall back to the default density config.
+    @if map_has_key($theme-or-config, density) {
+        @return map_get($theme-or-config, density);
+    }
+    @return $default;
+}
+
+/// Gets the typography configuration from the given theme or configuration.
+/// For backwards compatibility, typography is not included by default.
+@function gyp-get-typography-config($theme-or-config, $default: null) {
+    // If a configuration has been passed, return the config directly.
+    @if not _gyp-is-theme-object($theme-or-config) {
+        @return $theme-or-config;
+    }
+    // In case a theme has been passed, extract the configuration if present,
+    // or fall back to the default typography config.
+    @if (map_has_key($theme-or-config, typography)) {
+        @return map_get($theme-or-config, typography);
+    }
+    @return $default;
+}
+
+// Checks whether the given value resolves to a theme object. Theme objects are always
+// of type `map` and can optionally only specify `color`, `density` or `typography`.
+@function _gyp-is-theme-object($value) {
+    @return type-of($value) == 'map' and (
+    map_has_key($value, color) or
+    map_has_key($value, density) or
+    map_has_key($value, typography) or
+    length($value) == 0
+  );
+}
