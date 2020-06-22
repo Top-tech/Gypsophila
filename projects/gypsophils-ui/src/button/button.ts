@@ -28,7 +28,7 @@ const _GypButtonMixinBase: CanDisableCtor & CanColorCtor &
     host: {
         // '[attr.disabled]': 'disabled || null',
         '[class._gyp-animation-noopable]': '_animationMode === "NoopAnimations"',
-        'class': 'gyp-focus-indicator',
+        'class': 'gyp-focus-indicator gyp-button',
     },
     templateUrl: 'button.html',
     styleUrls: ['button.scss'],
@@ -44,7 +44,7 @@ export class GypButton extends _GypButtonMixinBase implements OnDestroy, Focusab
         super(elementRef);
 
 
-        elementRef.nativeElement.classList.add('mat-button-base');
+        elementRef.nativeElement.classList.add('gyp-button-base');
 
         this._focusMonitor.monitor(this._elementRef, true);
     }
