@@ -1,4 +1,4 @@
-# GypsophilsUi
+# GypsophilaUi
 
 This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.9.
 
@@ -22,3 +22,9 @@ Run `ng test gypsophila-ui` to execute the unit tests via [Karma](https://karma-
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## About theme 
+
+Material use one entry file theming-bundle to invoke all theming functions.
+As I concern, gypsophila ui may have completely different component structure and loads of assets, centered in one file to start theming may not a good practice.
+Now, I'm gonna try separate theming in component level. 

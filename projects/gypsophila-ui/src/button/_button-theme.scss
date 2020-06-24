@@ -1,5 +1,25 @@
+@import '../core/theming/check-duplicate-styles';
 
+
+@mixin gyp-button-color($color) {
+    $primary: map-get($color, primay);
+    $accent: map-get($color, accent);
+    $warn: map-get($color, warn);
+    $background: map-get($color, background);
+
+    .gyp-button {
+        background: map-get($background, background);
+    }
+}
 
 @mixin gyp-button-theme($theme) {
+    @include _gyp-check-duplicate-theme-styles($theme, 'gyp-button') {
+        $color: gyp-get-color-config($theme);
+        $density: gyp-get-density-config($theme);
+        $typography: gyp-get-typography-config($theme);
 
+        @if $color != null {
+            @include gyp-button-color($color);
+        }
+    }
 }

@@ -1,6 +1,10 @@
 @import 'button-base';
+@import 'button-theme';
+@import '../theme/bfa';
 
 
 .gyp-button {
     @include button-base;
 }
+
+@include gyp-button-theme($theme);

@@ -1,9 +1,0 @@
-@import "check-duplicate-styles";
-@import '../../button/button-theme';
-
-
-@mixin angular-gypsophila-theme($theme) {
-    @include _gyp-check-duplicate-theme-styles($theme) {
-        @include gyp-button-theme($theme);
-    }
-}

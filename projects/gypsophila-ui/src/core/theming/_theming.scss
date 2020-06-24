@@ -1,15 +1,53 @@
+
+
+// For a given hue in a palette, return the contrast color from the map of contrast palettes.
+// @param $color-map
+// @param $hue
+@function gyp-contrast($palette, $hue) {
+    @return map-get(map-get($palette, contrast), $hue);
+}
+
+
+// Creates a map of hues to colors for a theme. This is used to define a theme palette in terms
+// of the Material Design hues.
+// @param $color-map
+// @param $primary
+// @param $lighter
+@function gyp-palette($base-palette, $default: 500, $lighter: 100, $darker: 700, $text: $default) {
+    $result: map_merge($base-palette, (
+        default: map-get($base-palette, $default),
+        lighter: map-get($base-palette, $lighter),
+        darker: map-get($base-palette, $darker),
+        text: map-get($base-palette, $text),
+
+        default-contrast: gyp-contrast($base-palette, $default),
+        lighter-contrast: gyp-contrast($base-palette, $lighter),
+        darker-contrast: gyp-contrast($base-palette, $darker)
+    ));
+
+    // For each hue in the palette, add a "-contrast" color to the map.
+    @each $hue, $color in $base-palette {
+        $result: map_merge($result, (
+            '#{$hue}-contrast': gyp-contrast($base-palette, $hue)
+        ));
+    }
+
+    @return $result;
+}
+
+
 /// Gets the color configuration from the given theme or configuration.
-@function gyp-get-color-config($theme, $default: null) {
+@function gyp-get-color-config($theme-or-config, $default: null) {
     // If a configuration has been passed, return the config directly.
-    @if not _gyp-is-theme-object($theme) {
-        @return $theme;
+    @if not _gyp-is-theme-object($theme-or-config) {
+        @return $theme-or-config;
     }
     // If the theme has been constructed through the legacy theming API, we use the theme object
     // as color configuration instead of the dedicated `color` property. We do this because for
     // backwards compatibility, we copied the color configuration from `$theme.color` to `$theme`.
     // Hence developers could customize the colors at top-level and want to respect these changes
-    @if map_has_key($theme, color) {
-        @return map_get($theme, color);
+    @if map_has_key($theme-or-config, color) {
+        @return map_get($theme-or-config, color);
     }
     @return $default;
 }

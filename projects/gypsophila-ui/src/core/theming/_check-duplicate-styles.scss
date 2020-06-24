@@ -66,7 +66,7 @@ $_gyp-theme-emitted-density: () !default;
       //@if _gyp-is-legacy-constructed-theme($theme) {
       //  $duplicate-legacy-density: true;
       //}
-      @else if not $gyp-theme-ignore-duplication-warnings {
+      @if not $gyp-theme-ignore-duplication-warnings {
         @warn 'The same density styles are generated multiple times. ' +
            $_gyp-theme-duplicate-warning;
       }
