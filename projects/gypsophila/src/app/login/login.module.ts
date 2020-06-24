@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { GypButtonModule } from 'gypsophils-ui';
+import { GypButtonModule } from 'gypsophila-ui';
 
 
 @NgModule({

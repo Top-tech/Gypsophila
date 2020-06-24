@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { DesktopRoutingModule } from './desktop-routing.module';
 import { DesktopComponent } from './desktop.component';
-import { GypButtonModule } from 'gypsophils-ui';
+import { GypButtonModule } from 'gypsophila-ui';
 
 
 @NgModule({
