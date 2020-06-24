@@ -1,0 +1,18 @@
+@import '../core/theming/theming';
+@import '../core/theming/palette';
+
+
+$primary: gyp-palette($gyp-purple, 700, 500, 800);
+$accent:  gyp-palette($gyp-green, A200, A100, A400);
+$warn: gyp-palette($gyp-red);
+
+$theme: (
+    color: (
+        primary: $primary,
+        accent: $accent,
+        warn: if($warn != null, $warn, gyp-palette($gyp-red)),
+        is-dark: true,
+        foreground: $gyp-dark-theme-foreground,
+        background: $gyp-dark-theme-background
+    )
+)
