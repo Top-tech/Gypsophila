@@ -148,7 +148,7 @@ $gyp-grey: (
 $gyp-dark-theme-background: (
     status-bar: black,
     app-bar:    map_get($gyp-grey, 900),
-    background: #303030,
+    background: #550f08,
     hover:      rgba(white, 0.04),
     card:       map_get($gyp-grey, 800),
     dialog:     map_get($gyp-grey, 800),
@@ -181,3 +181,7 @@ $gyp-dark-theme-foreground: (
     slider-off:        rgba(white, 0.3),
     slider-off-active: rgba(white, 0.3),
 );
+
+$gyp-dark-theme-border: (
+    base: black
+)

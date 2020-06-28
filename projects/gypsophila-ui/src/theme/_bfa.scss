@@ -13,6 +13,7 @@ $theme: (
         warn: if($warn != null, $warn, gyp-palette($gyp-red)),
         is-dark: true,
         foreground: $gyp-dark-theme-foreground,
-        background: $gyp-dark-theme-background
+        background: $gyp-dark-theme-background,
+        border: $gyp-dark-theme-border
     )
 )

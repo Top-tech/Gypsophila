@@ -6,9 +6,11 @@
     $accent: map-get($color, accent);
     $warn: map-get($color, warn);
     $background: map-get($color, background);
+    $border: map-get($color, border);
 
     .gyp-button {
         background: map-get($background, background);
+        border-color: map-get($border, base);
     }
 }
 
