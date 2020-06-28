@@ -1,0 +1,55 @@
+@import '../core/styles/button-common';
+@import '../core/styles/variables';
+
+
+// Flat and raised button standards
+$gyp-button-padding: 0 16px !default;
+$gyp-button-min-width: 128px !default;
+$gyp-button-margin: 0 !default;
+$gyp-button-line-height: 36px !default;
+$gyp-button-border-width: 2px !default;
+$gyp-button-border-style: solid;
+$gyp-button-border-radius: 4px !default;
+$gyp-button-focus-transition: opacity 200ms $swift-ease-in-out-timing-function,
+                              background-color 200ms $swift-ease-in-out-timing-function !default;
+
+@mixin button-base {
+    box-sizing: border-box;
+    position: relative;
+
+    // Reset browser <button> styles.
+    @include gyp-button-reset();
+
+    // Make anchors render like buttons.
+    display: inline-block;
+    white-space: nowrap;
+    text-decoration: none;
+    vertical-align: baseline;
+    text-align: center;
+
+    // Sizing.
+    margin: $gyp-button-margin;
+    min-width: $gyp-button-min-width;
+    line-height: $gyp-button-line-height;
+    padding: $gyp-button-padding;
+    border: $gyp-button-border-width $gyp-button-border-style;
+    border-radius: $gyp-button-border-radius;
+
+    // Explicitly set the default overflow to `visible`. It is already set
+    // on most browsers except on IE11 where it defaults to `hidden`.
+    overflow: visible;
+
+    &[disabled] {
+        cursor: default;
+    }
+
+    &.cdk-keyboard-focused, &.cdk-program-focused {
+        .gyp-button-focus-overlay {
+            opacity: 0.12;
+        }
+    }
+
+    &::-moz-focus-inner {
+        border: 0;
+    }
+}

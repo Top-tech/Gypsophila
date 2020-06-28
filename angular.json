@@ -164,38 +164,38 @@
         }
       }
     },
-    "gypsophils-ui": {
+    "gypsophila-ui": {
       "projectType": "library",
-      "root": "projects/gypsophils-ui",
-      "sourceRoot": "projects/gypsophils-ui/src",
+      "root": "projects/gypsophila-ui",
+      "sourceRoot": "projects/gypsophila-ui/src",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "projects/gypsophils-ui/tsconfig.lib.json",
-            "project": "projects/gypsophils-ui/ng-package.json"
+            "tsConfig": "projects/gypsophila-ui/tsconfig.lib.json",
+            "project": "projects/gypsophila-ui/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/gypsophils-ui/tsconfig.lib.prod.json"
+              "tsConfig": "projects/gypsophila-ui/tsconfig.lib.prod.json"
             }
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/gypsophils-ui/src/test.ts",
-            "tsConfig": "projects/gypsophils-ui/tsconfig.spec.json",
-            "karmaConfig": "projects/gypsophils-ui/karma.conf.js"
+            "main": "projects/gypsophila-ui/src/test.ts",
+            "tsConfig": "projects/gypsophila-ui/tsconfig.spec.json",
+            "karmaConfig": "projects/gypsophila-ui/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/gypsophils-ui/tsconfig.lib.json",
-              "projects/gypsophils-ui/tsconfig.spec.json"
+              "projects/gypsophila-ui/tsconfig.lib.json",
+              "projects/gypsophila-ui/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"

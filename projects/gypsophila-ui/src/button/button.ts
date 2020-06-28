@@ -11,14 +11,15 @@ import { FocusableOption, FocusMonitor, FocusOrigin } from '@angular/cdk/a11y';
 import { ANIMATION_MODULE_TYPE } from '@angular/platform-browser/animations';
 import { CanDisableCtor, mixinDisabled } from '../core/common-behaviors/disabled';
 import { BooleanInput } from '@angular/cdk/coercion';
+import { CanColorCtor, mixinColor } from '../core/common-behaviors/color';
 
 // Boilerplate for applying mixins to MatButton.
 /** @docs-private */
 class MatButtonBase {
     constructor(public _elementRef: ElementRef) {}
 }
-const _GypButtonMixinBase: CanDisableCtor &
-    typeof MatButtonBase = mixinDisabled(MatButtonBase);
+const _GypButtonMixinBase: CanDisableCtor & CanColorCtor &
+    typeof MatButtonBase = mixinColor(mixinDisabled(MatButtonBase));
 
 
 @Component({
@@ -27,11 +28,11 @@ const _GypButtonMixinBase: CanDisableCtor &
     host: {
         // '[attr.disabled]': 'disabled || null',
         '[class._gyp-animation-noopable]': '_animationMode === "NoopAnimations"',
-        'class': 'gyp-focus-indicator',
+        'class': 'gyp-focus-indicator gyp-button',
     },
     templateUrl: 'button.html',
     styleUrls: ['button.scss'],
-    inputs: ['disabled', 'disableRipple', 'color'],
+    inputs: ['disabled', 'color'],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -43,7 +44,7 @@ export class GypButton extends _GypButtonMixinBase implements OnDestroy, Focusab
         super(elementRef);
 
 
-        elementRef.nativeElement.classList.add('mat-button-base');
+        elementRef.nativeElement.classList.add('gyp-button-base');
 
         this._focusMonitor.monitor(this._elementRef, true);
     }

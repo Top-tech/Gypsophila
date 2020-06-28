@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginModule } from './login/login.module';
-import { MatCommonModule } from '@angular/material/core';
 
 @NgModule({
     declarations: [
@@ -15,7 +14,6 @@ import { MatCommonModule } from '@angular/material/core';
         BrowserModule,
         AppRoutingModule,
         BrowserAnimationsModule,
-        MatCommonModule,
         LoginModule
     ],
     providers: [],
