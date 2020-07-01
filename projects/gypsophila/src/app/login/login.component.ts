@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { ExitService } from '../helper/exit.service';
 
 @Component({
     selector: 'gyp-login',
@@ -10,7 +11,9 @@ export class LoginComponent implements OnInit {
     username: FormControl = new FormControl('');
     password: FormControl = new FormControl('');
 
-    constructor() {
+    constructor(
+        private exitService: ExitService
+    ) {
     }
 
     ngOnInit(): void {
@@ -18,5 +21,9 @@ export class LoginComponent implements OnInit {
 
     login() {
         console.log('login');
+    }
+
+    exit() {
+        this.exitService.exit('login');
     }
 }
