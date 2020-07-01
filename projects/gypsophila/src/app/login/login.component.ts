@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.username.statusChanges.subscribe(console.log);
     }
 
     login() {
