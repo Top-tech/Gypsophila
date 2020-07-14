@@ -1,7 +1,7 @@
 {
     "rules": {
         "max-line-length": [true, {
-            "limit": 100,
+            "limit": 120,
             "check-strings": true,
             "check-regex": true,
             "ignore-pattern": "//\\s+https?://"
