@@ -20,9 +20,9 @@
         "dist/in-mem-api/in-mem-api",
         "dist/in-mem-api"
       ],
-      "gypsophils-ui": [
-        "dist/gypsophils-ui/gypsophils-ui",
-        "dist/gypsophils-ui"
+      "gypsophila-ui": [
+        "dist/gypsophila-ui/gypsophila-ui",
+        "dist/gypsophila-ui"
       ]
     }
   },
