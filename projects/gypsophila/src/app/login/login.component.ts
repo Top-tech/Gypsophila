@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { ExitService } from '../helper/exit.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { ExitService } from '../helper/exit.service';
     styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-    username: FormControl = new FormControl('');
+    username: FormControl = new FormControl('', Validators.min(3));
     password: FormControl = new FormControl('');
 
     constructor(
@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.username.statusChanges.subscribe(console.log);
+        this.username.valueChanges.subscribe(console.log);
     }
 
     login() {
