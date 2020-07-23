@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Input } from '@angular/core';
 import { Tangerine, WindowWithExtension } from './shell.interface';
 
 @Injectable({

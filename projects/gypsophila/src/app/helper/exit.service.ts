@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ShellService } from './shell/shell.service';
+import { Tangerine } from './shell/shell.interface';
+import { TangerineClient } from './shell/shell.decorator';
 
 
 export declare type ExitOrigin = 'normal' | 'login' | null;
@@ -8,6 +10,7 @@ export declare type ExitOrigin = 'normal' | 'login' | null;
     providedIn: 'root'
 })
 export class ExitService {
+    @TangerineClient() client: Tangerine;
 
     constructor(private shellService: ShellService) {
     }
