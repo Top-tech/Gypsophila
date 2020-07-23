@@ -1,27 +1,28 @@
 import { Injectable } from '@angular/core';
+import { Tangerine, WindowWithExtension } from './shell.interface';
 
-declare var window;
-
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class ShellService {
 
-  constructor() { }
+    constructor() {
+    }
 
-  // private getTangrineShell(): any {
-	// 	return window.tangerineExtension;
-  // }
-  
-  public getTangrineClient(): any {
-		return window.TangerineClient;
-  }
-  
-  // public getTangrineClient2() {
-  //   try {
-	// 		if (window.tangerineExtension && window.tangerineExtension.TangerineClient) {
-	// 			return new window.tangerineExtension.TangerineClient();
-	// 		}
-	// 	} catch (error) {
-	// 		return undefined;
-	// 	}
-  // }
+    // private getTangerineShell(): any {
+    // 	return window.tangerineExtension;
+    // }
+
+    get TangerineClient(): Tangerine {
+        // convert to unknown for non-overlapping
+        return (window as unknown as WindowWithExtension).TangerineClient;
+    }
+
+    getTangerineClient2() {
+        // if (!window.tangerineExtension && !window.tangerineExtension.TangerineClient) {
+        //     console.error('No shell extension');
+        //     return;
+        // }
+        // return new window.tangerineExtension.TangerineClient();
+    }
 }
