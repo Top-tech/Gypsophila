@@ -1,14 +1,14 @@
-<div class="login-box">
+<div class="login-box" [formGroup]="loginGroup">
     <p>
 <!--        <mat-form-field>-->
 <!--            <mat-label>Username</mat-label>-->
-            <input gyp-input [formControl]="username">
+            <input gyp-input formControlName="username">
 <!--        </mat-form-field>-->
     </p>
     <p>
 <!--        <mat-form-field>-->
 <!--            <mat-label>Password</mat-label>-->
-<!--            <input matInput [formControl]="password">-->
+            <input gyp-input formControlName="password">
 <!--        </mat-form-field>-->
     </p>
     <button gyp-button (click)="login()">Login</button>
