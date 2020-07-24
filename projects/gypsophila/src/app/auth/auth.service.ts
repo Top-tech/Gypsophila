@@ -18,6 +18,6 @@ export class AuthService {
 
     login(data) {
         const headers = new HttpHeaders().set('no-identity', 'true');
-        return this.http.post('login', data, {headers});
+        return this.http.post('auth/login', data, {headers});
     }
 }
