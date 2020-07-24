@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ExitService } from '../helper/exit.service';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
     selector: 'gyp-login',
@@ -8,20 +9,23 @@ import { ExitService } from '../helper/exit.service';
     styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-    username: FormControl = new FormControl('', Validators.min(3));
-    password: FormControl = new FormControl('');
+    loginGroup: FormGroup = new FormGroup({
+        username: new FormControl('', Validators.min(3)),
+        password: new FormControl('')
+    });
 
     constructor(
+        private authService: AuthService,
         private exitService: ExitService
     ) {
     }
 
     ngOnInit(): void {
-        this.username.valueChanges.subscribe(console.log);
     }
 
     login() {
-        console.log('login');
+        this.authService.login(this.loginGroup.value)
+            .subscribe(console.log);
     }
 
     exit() {
