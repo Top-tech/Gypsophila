@@ -1,4 +1,7 @@
 import { Injectable } from '@angular/core';
+import { ShellService } from './shell/shell.service';
+import { Tangerine } from './shell/shell.interface';
+import { TangerineClient } from './shell/shell.decorator';
 
 
 export declare type ExitOrigin = 'normal' | 'login' | null;
@@ -7,14 +10,12 @@ export declare type ExitOrigin = 'normal' | 'login' | null;
     providedIn: 'root'
 })
 export class ExitService {
+    @TangerineClient() client: Tangerine;
 
-    constructor() {
+    constructor(private shellService: ShellService) {
     }
 
     exit(origin: ExitOrigin = 'normal') {
-        // TODO: This can't close the tab not opened in '_blank' or open by script. Consider add some popup.
-        window.opener = null;
-        window.open('', '_self');
-        window.close();
+        this.shellService.TangerineClient.exit();
     }
 }
