@@ -8,6 +8,7 @@ import { getSupportedInputTypes, Platform } from '@angular/cdk/platform';
 import { AutofillMonitor } from '@angular/cdk/text-field';
 import { GYP_INPUT_VALUE_ACCESSOR } from './input-value-accessor';
 import { getGypInputUnsupportedTypeError } from './input-errors';
+import { GypFormFieldControl } from '../form-field/form-field-control';
 
 const GYP_INPUT_INVALID_TYPES = [
     'button',
@@ -48,9 +49,12 @@ let nextUniqueId = 0;
         '(focus)': '_focusChanged(true)',
         '(blur)': '_focusChanged(false)',
         '(input)': '_onInput()'
-    }
+    },
+    providers: [
+        {provide: GypFormFieldControl, useExisting: GypInput}
+    ]
 })
-export class GypInput extends _GypInputMixinBase implements OnChanges,
+export class GypInput extends _GypInputMixinBase implements GypFormFieldControl<any>, OnChanges,
     OnDestroy, AfterViewInit, DoCheck, CanUpdateErrorState {
     protected _uid = `gyp-input-${nextUniqueId++}`;
     protected _previousNativeValue: any;

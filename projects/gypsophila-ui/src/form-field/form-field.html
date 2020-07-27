@@ -1,0 +1,9 @@
+<div class="gyp-form-field-wrapper">
+    <div class="gyp-form-field-flex" #connectionContainer
+         (click)="_control.onContainerClick && _control.onContainerClick($event)">
+
+        <div class="gyp-form-field-infix" #inputContainer>
+            <ng-content></ng-content>
+        </div>
+    </div>
+</div>
