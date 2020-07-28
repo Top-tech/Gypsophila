@@ -1,14 +1,14 @@
 import { AfterViewInit, Directive, DoCheck, ElementRef,
     Inject, Input, NgZone, OnChanges, OnDestroy, Optional, Self } from '@angular/core';
-import { CanUpdateErrorStateCtor, ErrorStateMatcher } from '@angular/material/core';
 import { FormGroupDirective, NgControl } from '@angular/forms';
-import { CanUpdateErrorState, mixinErrorState } from '../core/common-behaviors/error-state';
+import { CanUpdateErrorState, CanUpdateErrorStateCtor, mixinErrorState } from '../core/common-behaviors/error-state';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { getSupportedInputTypes, Platform } from '@angular/cdk/platform';
 import { AutofillMonitor } from '@angular/cdk/text-field';
 import { GYP_INPUT_VALUE_ACCESSOR } from './input-value-accessor';
 import { getGypInputUnsupportedTypeError } from './input-errors';
 import { GypFormFieldControl } from '../form-field/form-field-control';
+import { ErrorStateMatcher } from '../core/common-behaviors/error-options';
 
 const GYP_INPUT_INVALID_TYPES = [
     'button',
@@ -272,7 +272,7 @@ export class GypInput extends _GypInputMixinBase implements GypFormFieldControl<
     }
 
     /**
-     * Implemented as part of MatFormFieldControl.
+     * Implemented as part of GypFormFieldControl.
      * @docs-private
      */
     get empty(): boolean {
@@ -281,7 +281,7 @@ export class GypInput extends _GypInputMixinBase implements GypFormFieldControl<
     }
 
     /**
-     * Implemented as part of MatFormFieldControl.
+     * Implemented as part of GypFormFieldControl.
      * @docs-private
      */
     setDescribedByIds(ids: string[]) {
@@ -289,7 +289,7 @@ export class GypInput extends _GypInputMixinBase implements GypFormFieldControl<
     }
 
     /**
-     * Implemented as part of MatFormFieldControl.
+     * Implemented as part of GypFormFieldControl.
      * @docs-private
      */
     onContainerClick() {

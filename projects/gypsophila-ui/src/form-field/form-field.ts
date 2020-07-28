@@ -1,7 +1,7 @@
 import {
     AfterContentChecked,
     AfterContentInit,
-    AfterViewInit, ChangeDetectionStrategy,
+    AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef,
     Component, ContentChild,
     ElementRef,
     InjectionToken,
@@ -11,6 +11,8 @@ import { CanColor, CanColorCtor, mixinColor } from '../core/common-behaviors/col
 import { GypFormFieldControl } from './form-field-control';
 import { NgControl } from '@angular/forms';
 import { Subject } from 'rxjs';
+import { getGypFormFieldMissingControlError } from './form-field-errors';
+import { startWith } from 'rxjs/operators';
 
 
 class GypFormFieldBase {
@@ -72,18 +74,29 @@ export class GypFormField extends _GypFormFieldMixinBase
     private _destroyed = new Subject<void>();
 
     constructor(
-        _elementRef: ElementRef
+        public _elementRef: ElementRef,
+        private _changeDetectorRef: ChangeDetectorRef,
     ) {
         super(_elementRef);
     }
 
     ngAfterContentChecked(): void {
+        this._validateControlChild();
     }
 
     ngAfterContentInit(): void {
+        this._validateControlChild();
+
+        const control = this._control;
+
+        // Subscribe to changes in the child control state in order to update the form field UI.
+        control.stateChanges.pipe(startWith(null!)).subscribe(() => {
+            this._changeDetectorRef.markForCheck();
+        });
     }
 
     ngAfterViewInit(): void {
+        this._changeDetectorRef.detectChanges();
     }
 
     ngOnDestroy(): void {
@@ -95,5 +108,12 @@ export class GypFormField extends _GypFormFieldMixinBase
     _shouldForward(prop: keyof NgControl): boolean {
         const ngControl = this._control ? this._control.ngControl : null;
         return ngControl && ngControl[prop];
+    }
+
+    /** Throws an error if the form field's control is missing. */
+    protected _validateControlChild() {
+        if (!this._control) {
+            throw getGypFormFieldMissingControlError();
+        }
     }
 }
