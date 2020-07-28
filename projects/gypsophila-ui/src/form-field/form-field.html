@@ -2,6 +2,10 @@
     <div class="gyp-form-field-flex" #connectionContainer
          (click)="_control.onContainerClick && _control.onContainerClick($event)">
 
+        <label class="gyp-form-field-label" *ngIf="hasLabel()">
+            <ng-content select="gyp-label"></ng-content>
+        </label>
+
         <div class="gyp-form-field-infix" #inputContainer>
             <ng-content></ng-content>
         </div>

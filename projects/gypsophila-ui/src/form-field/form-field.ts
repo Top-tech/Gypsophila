@@ -13,6 +13,7 @@ import { NgControl } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { getGypFormFieldMissingControlError } from './form-field-errors';
 import { startWith } from 'rxjs/operators';
+import { GypLabel } from './label';
 
 
 class GypFormFieldBase {
@@ -71,6 +72,12 @@ export class GypFormField extends _GypFormFieldMixinBase
     }
     private _explicitFormFieldControl: GypFormFieldControl<any>;
 
+    @ContentChild(GypLabel) _labelChildNonStatic: GypLabel;
+    @ContentChild(GypLabel, {static: true}) _labelChildStatic: GypLabel;
+    get labelChild() {
+        return this._labelChildNonStatic || this._labelChildStatic;
+    }
+
     private _destroyed = new Subject<void>();
 
     constructor(
@@ -115,5 +122,9 @@ export class GypFormField extends _GypFormFieldMixinBase
         if (!this._control) {
             throw getGypFormFieldMissingControlError();
         }
+    }
+
+    hasLabel() {
+        return !!this.labelChild;
     }
 }

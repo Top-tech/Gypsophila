@@ -14,7 +14,6 @@ import { ShellModule } from '../helper/shell/shell.module';
         GypButtonModule,
         GypInputModule,
         ShellModule,
-        GypFormFiledModule,
     ]
 })
 export class LoginModule {
