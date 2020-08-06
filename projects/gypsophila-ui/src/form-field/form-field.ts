@@ -124,7 +124,7 @@ export class GypFormField extends _GypFormFieldMixinBase
         }
     }
 
-    hasLabel() {
+    _hasLabel() {
         return !!this.labelChild;
     }
 }
