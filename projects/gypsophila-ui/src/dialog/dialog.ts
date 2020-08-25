@@ -1,12 +1,25 @@
-import { Directive, Inject, Injectable, InjectionToken, Injector, OnDestroy, Optional, SkipSelf, Type } from '@angular/core';
-import { Overlay, OverlayContainer, ScrollStrategy } from '@angular/cdk/overlay';
-import { GypDialogContainer } from './dialog-container';
+import {
+    Directive,
+    Inject,
+    Injectable,
+    InjectionToken,
+    Injector,
+    OnDestroy,
+    Optional,
+    SkipSelf,
+    Type
+} from '@angular/core';
+import { ComponentType, Overlay, OverlayContainer, ScrollStrategy } from '@angular/cdk/overlay';
+import { _GypDialogContainerBase, GypDialogContainer } from './dialog-container';
+import { GypDialogConfig } from './dialog-config';
+import { GypDialogRef } from './dialog-ref';
 
 /** Injection token that determines the scroll handling while the dialog is open. */
 export const GYP_DIALOG_SCROLL_STRATEGY =
     new InjectionToken<() => ScrollStrategy>('gyp-dialog-scroll-strategy');
 
 @Directive()
+// tslint:disable-next-line:class-name
 export abstract class _GypDialogBase<C extends _GypDialogContainerBase> implements OnDestroy {
     private _scrollStrategy: () => ScrollStrategy;
 
@@ -21,6 +34,10 @@ export abstract class _GypDialogBase<C extends _GypDialogContainerBase> implemen
         private _dialogContainerType: Type<C>,
         /*private _dialogDataToken: InjectionToken<any>*/) {
         this._scrollStrategy = scrollStrategy;
+    }
+
+    open<T, D = any, R = any>(componentRef: ComponentType<T>,
+                              config?: GypDialogConfig<D>): GypDialogRef<T, R> {
     }
 
     ngOnDestroy() {
